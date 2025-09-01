@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,104 +8,496 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* General Body and Container Styles */
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+        color: #e0e0e0;
+        line-height: 1.6;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .menu-container {
+        background-color: #121212;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 900px;
+        padding: 30px;
+        box-sizing: border-box;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Header and Language Switcher Styles */
+      .menu-header {
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .bar-name {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5em;
+        color: #e0b06b; /* Gold/Amber Accent */
+        margin: 0;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(224, 176, 107, 0.3);
+      }
+
+      .tagline {
+        font-size: 1.1em;
+        color: #b0b0b0;
+        margin-top: 10px;
+        font-weight: 300;
+      }
+
+      .language-switcher {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .lang-button {
+        background: none;
+        border: none;
+        color: #aaa;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        padding: 5px 15px;
+        transition: color 0.3s ease;
+      }
+
+      .lang-button:hover {
+        color: #e0b06b;
+      }
+
+      .lang-button.active {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #e0b06b;
+        text-underline-offset: 5px;
+      }
+
+      /* Navigation Styles */
+      .menu-navigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .nav-button {
+        background-color: transparent;
+        border: 1px solid #e0b06b;
+        color: #e0b06b;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .nav-button:hover {
+        background-color: #e0b06b;
+        color: #121212;
+        box-shadow: 0 0 15px rgba(224, 176, 107, 0.4);
+      }
+
+      .nav-button.active {
+        background-color: #e0b06b;
+        color: #121212;
+        box-shadow: 0 0 20px rgba(224, 176, 107, 0.6);
+        border-color: #e0b06b;
+      }
+
+      /* Menu Section Styles */
+      .menu-section {
+        margin-bottom: 50px;
+        display: block;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+        max-height: 2000px; /* Generous max-height for content */
+        overflow: hidden;
+      }
+
+      .menu-section.hidden {
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2em;
+        color: #e0b06b;
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: 60px;
+        height: 2px;
+        background-color: #e0b06b;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .menu-item {
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border-left: 3px solid #e0b06b;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .item-name {
+        font-weight: 600;
+        font-size: 1.1em;
+        color: #f0f0f0;
+      }
+
+      .item-price {
+        font-weight: 700;
+        font-size: 1.1em;
+        color: #e0b06b;
+        white-space: nowrap;
+      }
+
+      /* Footer Styles */
+      .menu-footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        font-size: 0.9em;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .menu-container {
+          padding: 20px;
+        }
+        .bar-name {
+          font-size: 2.5em;
+        }
+        .tagline {
+          font-size: 1em;
+        }
+        .menu-navigation {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .nav-button {
+          width: 100%;
+          max-width: none;
+        }
+        .section-title {
+          font-size: 1.8em;
+        }
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .bar-name {
+          font-size: 2em;
+        }
+        .tagline {
+          font-size: 0.9em;
+        }
+        .menu-item {
+          padding: 15px;
+        }
+        .item-name,
+        .item-price {
+          font-size: 1em;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="menu-container">
       <header class="menu-header">
         <h1 class="bar-name">VISALD BAR</h1>
-        <p class="tagline">Crafting Moments, One Sip at a Time</p>
+        <p class="tagline" data-sq="Menu Digjitale" data-en="Digital Menu">
+          Menu Digjitale
+        </p>
       </header>
 
+      <div class="language-switcher">
+        <button class="lang-button" data-lang="en">English</button>
+        <button class="lang-button active" data-lang="sq">Shqip</button>
+      </div>
+
       <nav class="menu-navigation">
-        <button class="nav-button active" data-category="all">All Items</button>
-        <button class="nav-button" data-category="beers">Beers & Snacks</button>
-        <button class="nav-button" data-category="spirits">Spirits</button>
-        <button class="nav-button" data-category="soft-drinks">
-          Soft Drinks & Juices
+        <button
+          class="nav-button active"
+          data-category="all"
+          data-sq="Të gjitha"
+          data-en="All Items"
+        >
+          Të gjitha
         </button>
-        <button class="nav-button" data-category="hot-drinks">
-          Hot Drinks & Coffee
+        <button
+          class="nav-button"
+          data-category="hot-drinks"
+          data-sq="Pije të Nxehta & Kafe"
+          data-en="Hot Drinks & Coffee"
+        >
+          Pije të Nxehta & Kafe
+        </button>
+        <button
+          class="nav-button"
+          data-category="beers"
+          data-sq="Birra & Snacks"
+          data-en="Beers & Snacks"
+        >
+          Birra & Snacks
+        </button>
+        <button
+          class="nav-button"
+          data-category="spirits"
+          data-sq="Pije Alkoolike"
+          data-en="Spirits"
+        >
+          Pije Alkoolike
+        </button>
+        <button
+          class="nav-button"
+          data-category="soft-drinks"
+          data-sq="Pije Freskuese & Lëngje"
+          data-en="Soft Drinks & Juices"
+        >
+          Pije Freskuese & Lëngje
         </button>
       </nav>
 
       <main class="menu-sections">
-        <section id="beers" class="menu-section" data-category="beers">
-          <h2 class="section-title">Beers & Snacks</h2>
+        <section
+          id="hot-drinks"
+          class="menu-section"
+          data-category="hot-drinks"
+        >
+          <h2
+            class="section-title"
+            data-sq="Pije të Nxehta & Kafe"
+            data-en="Hot Drinks & Coffee"
+          >
+            Pije të Nxehta & Kafe
+          </h2>
           <div class="menu-grid">
             <div class="menu-item">
-              <span class="item-name">Elbar i madh</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Caj" data-en="Tea">Caj</span
+              ><span class="item-price">70</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Elbar i vogel</span>
-              <span class="item-price">120</span>
+              <span class="item-name" data-sq="Frape" data-en="Frappe"
+                >Frape</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Heineken</span>
-              <span class="item-price">250</span>
+              <span class="item-name" data-sq="Glina" data-en="Glina Water"
+                >Glina</span
+              ><span class="item-price">70</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Kikirik</span>
-              <span class="item-price">60</span>
+              <span class="item-name" data-sq="Kafe" data-en="Coffee">Kafe</span
+              ><span class="item-price">70</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Korca</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Kakao" data-en="Cocoa"
+                >Kakao</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Molto</span>
-              <span class="item-price">70</span>
+              <span class="item-name" data-sq="Kapucino" data-en="Cappuccino"
+                >Kapucino</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Patetina</span>
-              <span class="item-price">70</span>
+              <span class="item-name" data-sq="Salep" data-en="Salep"
+                >Salep</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Peroni</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Uje" data-en="Water">Uje</span
+              ><span class="item-price">60</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="beers" class="menu-section" data-category="beers">
+          <h2
+            class="section-title"
+            data-sq="Birra & Snacks"
+            data-en="Beers & Snacks"
+          >
+            Birra & Snacks
+          </h2>
+          <div class="menu-grid">
+            <div class="menu-item">
+              <span
+                class="item-name"
+                data-sq="Elbar i madh"
+                data-en="Large Elbar Beer"
+                >Elbar i madh</span
+              ><span class="item-price">150</span>
+            </div>
+            <div class="menu-item">
+              <span
+                class="item-name"
+                data-sq="Elbar i vogel"
+                data-en="Small Elbar Beer"
+                >Elbar i vogel</span
+              ><span class="item-price">120</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Heineken" data-en="Heineken"
+                >Heineken</span
+              ><span class="item-price">250</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Kikirik" data-en="Peanuts"
+                >Kikirik</span
+              ><span class="item-price">60</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Korca" data-en="Korca Beer"
+                >Korca</span
+              ><span class="item-price">150</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Molto" data-en="Molto Croissant"
+                >Molto</span
+              ><span class="item-price">70</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Patetina" data-en="Chips"
+                >Patetina</span
+              ><span class="item-price">70</span>
+            </div>
+            <div class="menu-item">
+              <span class="item-name" data-sq="Peroni" data-en="Peroni Beer"
+                >Peroni</span
+              ><span class="item-price">150</span>
             </div>
           </div>
         </section>
 
         <section id="spirits" class="menu-section" data-category="spirits">
-          <h2 class="section-title">Spirits</h2>
+          <h2 class="section-title" data-sq="Pije Alkoolike" data-en="Spirits">
+            Pije Alkoolike
+          </h2>
           <div class="menu-grid">
             <div class="menu-item">
-              <span class="item-name">Amaro Montengro</span>
-              <span class="item-price">300</span>
+              <span
+                class="item-name"
+                data-sq="Amaro Montengro"
+                data-en="Amaro Montenegro"
+                >Amaro Montengro</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Chin gordon</span>
-              <span class="item-price">300</span>
+              <span
+                class="item-name"
+                data-sq="Chin gordon"
+                data-en="Gordon's Gin"
+                >Chin gordon</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Fernet branka</span>
-              <span class="item-price">300</span>
+              <span
+                class="item-name"
+                data-sq="Fernet branka"
+                data-en="Fernet-Branca"
+                >Fernet branka</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Jack Daniels</span>
-              <span class="item-price">300</span>
+              <span
+                class="item-name"
+                data-sq="Jack Daniels"
+                data-en="Jack Daniel's"
+                >Jack Daniels</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Jagemaster</span>
-              <span class="item-price">350</span>
+              <span
+                class="item-name"
+                data-sq="Jagemaster"
+                data-en="Jägermeister"
+                >Jagemaster</span
+              ><span class="item-price">350</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Konjak Skenderbeu</span>
-              <span class="item-price">100</span>
+              <span
+                class="item-name"
+                data-sq="Konjak Skenderbeu"
+                data-en="Skënderbeu Cognac"
+                >Konjak Skenderbeu</span
+              ><span class="item-price">100</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Metaxa</span>
-              <span class="item-price">300</span>
+              <span class="item-name" data-sq="Metaxa" data-en="Metaxa"
+                >Metaxa</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Vodka</span>
-              <span class="item-price">300</span>
+              <span class="item-name" data-sq="Vodka" data-en="Vodka"
+                >Vodka</span
+              ><span class="item-price">300</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Xhon i kuq</span>
-              <span class="item-price">300</span>
+              <span
+                class="item-name"
+                data-sq="Xhon i kuq"
+                data-en="Johnnie Walker Red"
+                >Xhon i kuq</span
+              ><span class="item-price">300</span>
             </div>
           </div>
         </section>
@@ -115,97 +507,77 @@
           class="menu-section"
           data-category="soft-drinks"
         >
-          <h2 class="section-title">Soft Drinks & Juices</h2>
+          <h2
+            class="section-title"
+            data-sq="Pije Freskuese & Lëngje"
+            data-en="Soft Drinks & Juices"
+          >
+            Pije Freskuese & Lëngje
+          </h2>
           <div class="menu-grid">
             <div class="menu-item">
-              <span class="item-name">Amita</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Amita" data-en="Amita Juice"
+                >Amita</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">B52</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="B52" data-en="B52 Energy Drink"
+                >B52</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Biter</span>
-              <span class="item-price">70</span>
+              <span class="item-name" data-sq="Biter" data-en="Bitter Lemon"
+                >Biter</span
+              ><span class="item-price">70</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Bravo</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Bravo" data-en="Bravo Juice"
+                >Bravo</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Caj ftohte</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Caj ftohte" data-en="Iced Tea"
+                >Caj ftohte</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Cola</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Cola" data-en="Cola">Cola</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Fanta</span>
-              <span class="item-price">150</span>
+              <span class="item-name" data-sq="Fanta" data-en="Fanta"
+                >Fanta</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Orange soda</span>
-              <span class="item-price">150</span>
+              <span
+                class="item-name"
+                data-sq="Orange soda"
+                data-en="Orange Soda"
+                >Orange soda</span
+              ><span class="item-price">150</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Red Bull</span>
-              <span class="item-price">250</span>
+              <span class="item-name" data-sq="Red Bull" data-en="Red Bull"
+                >Red Bull</span
+              ><span class="item-price">250</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Suko</span>
-              <span class="item-price">70</span>
+              <span class="item-name" data-sq="Suko" data-en="Juice">Suko</span
+              ><span class="item-price">70</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Tepelena me vitamin</span>
-              <span class="item-price">120</span>
+              <span
+                class="item-name"
+                data-sq="Tepelena me vitamin"
+                data-en="Tepelena Vitamin Water"
+                >Tepelena me vitamin</span
+              ><span class="item-price">120</span>
             </div>
             <div class="menu-item">
-              <span class="item-name">Zhveps</span>
-              <span class="item-price">120</span>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="hot-drinks"
-          class="menu-section"
-          data-category="hot-drinks"
-        >
-          <h2 class="section-title">Hot Drinks & Coffee</h2>
-          <div class="menu-grid">
-            <div class="menu-item">
-              <span class="item-name">Caj</span>
-              <span class="item-price">70</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Frape</span>
-              <span class="item-price">150</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Glina</span>
-              <span class="item-price">70</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Kafe</span>
-              <span class="item-price">70</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Kakao</span>
-              <span class="item-price">150</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Kapucino</span>
-              <span class="item-price">150</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Salep</span>
-              <span class="item-price">150</span>
-            </div>
-            <div class="menu-item">
-              <span class="item-name">Uje</span>
-              <span class="item-price">60</span>
+              <span class="item-name" data-sq="Zhveps" data-en="Schweppes"
+                >Zhveps</span
+              ><span class="item-price">120</span>
             </div>
           </div>
         </section>
@@ -216,6 +588,81 @@
       </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const categoryButtons = document.querySelectorAll(".nav-button");
+        const menuSections = document.querySelectorAll(".menu-section");
+        const langButtons = document.querySelectorAll(".lang-button");
+        const translatableElements = document.querySelectorAll(
+          "[data-en], [data-sq]"
+        );
+
+        // --- CATEGORY FILTERING LOGIC ---
+        function filterMenu(category) {
+          categoryButtons.forEach((button) => {
+            if (button.dataset.category === category) {
+              button.classList.add("active");
+            } else {
+              button.classList.remove("active");
+            }
+          });
+
+          menuSections.forEach((section) => {
+            if (category === "all" || section.dataset.category === category) {
+              section.classList.remove("hidden");
+            } else {
+              section.classList.add("hidden");
+            }
+          });
+        }
+
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const category = button.dataset.category;
+            filterMenu(category);
+          });
+        });
+
+        // --- LANGUAGE SWITCHING LOGIC ---
+        function changeLanguage(lang) {
+          // Set the lang attribute on the html tag for accessibility
+          document.documentElement.lang = lang;
+
+          // Update text content of all translatable elements
+          translatableElements.forEach((element) => {
+            element.textContent = element.dataset[lang];
+          });
+
+          // Update active state for language buttons
+          langButtons.forEach((button) => {
+            if (button.dataset.lang === lang) {
+              button.classList.add("active");
+            } else {
+              button.classList.remove("active");
+            }
+          });
+
+          // Store user's preference
+          localStorage.setItem("preferredLanguage", lang);
+        }
+
+        langButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const lang = button.dataset.lang;
+            changeLanguage(lang);
+          });
+        });
+
+        // --- INITIALIZATION LOGIC ---
+        function initializeMenu() {
+          const preferredLanguage =
+            localStorage.getItem("preferredLanguage") || "sq";
+          changeLanguage(preferredLanguage);
+          filterMenu("all");
+        }
+
+        initializeMenu();
+      });
+    </script>
   </body>
 </html>
